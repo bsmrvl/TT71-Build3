@@ -8,10 +8,8 @@ verify_ssl = true
 [packages]
 flask = "*"
 flask-sqlalchemy = "*"
-requests = "*"
 pandas = "*"
 python-dotenv = "*"
-wget = "*"
 
 [requires]
 python_version = "3.8"
