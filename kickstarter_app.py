@@ -10,7 +10,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Database instance
 DB = SQLAlchemy(app)
 
-# Root endpoint - Prints counts, by campaign status.
+
+# ROOT
 # TODO - This route will just display the home page, so no need for these queries.
 #        If we can find a way to query a list of the campaign categories, maybe send
 #        those as a parameter in render_template('base.html') so I can have a dropdown
@@ -25,6 +26,7 @@ def root():
     return str(f'all: {all}<br><br>succeeded: {succeeded}<br>failed: {failed}<br>not done: {not_done}')
 
 
+# PREDICT
 # TODO - The predict form will have a bunch of fields which will depend on Daven's and
 #        Trevor's model. This route should take those inputs, make the prediction, and
 #        render the result in 'predict.html'.
@@ -33,6 +35,7 @@ def predict():
     pass
 
 
+# QUERY
 # TODO - The query form will have the 'categories' dropdown mentioned above, and a few
 #        other fields so users can search the database for campaigns similar to theirs
 #        and see if the results succeeded or failed. This route should make a query
