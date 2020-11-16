@@ -5,6 +5,19 @@
     
 </head>
 <body>
-
+    <p>All: {{ all }}</p>
+    <p>Succeeded: {{ succ }}</p>
+    <p>Failed: {{ fail }}</p>
+    <p>Unfinished: {{ notdone }}</p>
+    <br>
+    <form action="/predict", method="post">
+        <input name="predict_test" type="text", placeholder="Predict Form Test">
+        <button>Submit</button>
+    </form>
+    <br>
+    <form action="/query", method="post">
+        <input name="query_test" type="text", placeholder="Query Form Test">
+        <button>Submit</button>
+    </form>
 </body>
 </html>

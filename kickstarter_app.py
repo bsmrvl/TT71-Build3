@@ -23,7 +23,11 @@ def root():
     failed = Record.query.filter(Record.pledged < Record.goal)\
                          .filter(Record.deadline_timestamp <= time()).count()
     not_done = Record.query.filter(Record.deadline_timestamp > time()).count()
-    return str(f'all: {all}<br><br>succeeded: {succeeded}<br>failed: {failed}<br>not done: {not_done}')
+    return render_template('base.html', title='Home',
+                           all=all,
+                           succ=succeeded,
+                           fail=failed,
+                           notdone=not_done)
 
 
 # PREDICT
@@ -32,7 +36,9 @@ def root():
 #        render the result in 'predict.html'.
 @app.route('/predict', methods=['POST'])
 def predict():
-    pass
+    result = None
+    return render_template('predict.html', title='Prediction',
+                           result=result)
 
 
 # QUERY
@@ -43,7 +49,9 @@ def predict():
 #        where I'll print them nicely.
 @app.route('/query', methods=['POST'])
 def query():
-    pass
+    result = None
+    return render_template('query.html', title='Query',
+                           result=result)
 
 
 
