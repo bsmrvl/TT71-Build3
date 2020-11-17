@@ -87,10 +87,41 @@ def queryr():
     location = request.form.get('location')
     blurbphrase = request.form.get('blurbphrase')
 
-    query_results = Record.query.filter(
-        Record.category_name == category,
-        #(goal*0.9)<= Record.goal <= (goal*1.10),
-        Record.location == location)
+    if category != '':
+        if goal == '' and location == '' and blurbphrase == '':
+            query_results = Record.query.filter(
+                Record.category_name == category
+            )
+        else:
+            query_results = 'Please provide only one input'
+
+    if goal != '':
+        if category == '' and location == '' and blurbphrase == '':
+            query_results = Record.query.filter(
+                Record.goal >= int(int(goal)*0.9),
+                Record.goal <= int(int(goal)*1.1)
+            )
+        else:
+            query_results = 'Please provide only one input'
+    
+    if location != '':
+        if category == '' and goal == '' and blurbphrase == '':
+            query_results = Record.query.filter(
+                Record.location == location
+            )
+        else:
+            query_results = 'Please provide only one input'
+    
+    if blurbphrase != '':
+        if category == '' and goal == '' and location == '':
+            query_results = Record.query.filter(
+                Record.blurb == blurbphrase
+            )
+        else:
+            query_results = 'Please provide only one input'
+    else:
+        query_results = 'You must provide one input'
+
 
     return render_template('queryr.html', title='Query Result',
                            result=query_results)
