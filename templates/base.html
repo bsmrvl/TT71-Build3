@@ -2,18 +2,28 @@
 
 <html>
 <head>
-    
+    <meta charset="utf-8" http-equiv='Content-Type'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <title>Kickstarter Success - {{ title }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='js/main.js') }}"/>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/chili.png') }}">
 </head>
 <body>
-    <h2>Will Your Kickstarter Campaign Fail?</h2>
+    <section>
     {% block content %}
-        <p>All: {{ all }}</p>
+        <h1>Will Your Kickstarter Campaign Fail?</h1>
+        <p>We built a deep learning model from thousands of past Kickstarter campaigns, in order to help you shape your own campaign for the highest chance of success. </p>
+        <!-- <p>All: {{ all }}</p>
         <p>Succeeded: {{ succ }}</p>
         <p>Failed: {{ fail }}</p>
-        <p>Unfinished: {{ notdone }}</p>
+        <p>Unfinished: {{ notdone }}</p> -->
         <br>
-        <a href='/predict'>Predict</a>
-        <a href='/query'>Query</a>
+        <div id='options'>
+            <a class='button' href='/predict'>PREDICT SUCCESS</a>
+            <a class='button' href='/query'>SEARCH SIMILAR</a>
+        </div>
     {% endblock %}
+    </section>
 </body>
 </html>

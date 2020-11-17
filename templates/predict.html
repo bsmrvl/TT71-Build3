@@ -1,8 +1,18 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="/predict", method="post">
-        <input name="predict_test" type="text", placeholder="Predict Form Test">
-        <button>Submit</button>
+    <h2>Predict Success</h2>
+    <form action="/predict" method="post" id='predform'>
+        <div><label for="category">Category</label>
+        <select name="category" class='input'>
+            {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select></div>
+        <div><label for="blurb">Description</label>
+        <textarea name="blurb" class='input'></textarea></div>
+        
+        <button class='button'>Predict!</button>
     </form>
-{% endblock %}
+    <div style='visibility: hidden;'>f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f </div>
+{% endblock %},
