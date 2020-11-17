@@ -6,10 +6,11 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
     <title>Kickstarter Success - {{ title }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
-    <link rel="stylesheet" href="{{ url_for('static', filename='js/main.js') }}"/>
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/coin.png') }}">
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
 </head>
 <body>
+    <div id='alertbox'></div>
     <section>
     {% block content %}
         <h1>Will Your Kickstarter Campaign Fail?</h1>
