@@ -40,7 +40,7 @@ def predict():
             cat_names.append(cat.category_name)  
         else: 
             continue
-    return render_template('predict.html', title='Predict', categories=sorted(cat_names)
+    return render_template('predict.html', title='Predict', categories=sorted(cat_names))
 
 @app.route('/query')
 def query():
