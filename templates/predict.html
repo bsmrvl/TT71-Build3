@@ -6,6 +6,7 @@
     <form action="/predictr" method="post" id='predform'>
         <div><label for="category">Category</label>
         <select name="category" class='input'>
+            <option value="" disabled selected>Choose</option>
             {% for cat in categories %}
                 <option value="{{ cat }}">{{ cat }}</option>
             {% endfor %}
