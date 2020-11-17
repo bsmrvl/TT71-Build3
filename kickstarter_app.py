@@ -13,9 +13,8 @@ DB = SQLAlchemy(app)
 
 # ROOT
 # TODO - This route will just display the home page, so no need for these queries.
-#        If we can find a way to query a list of the campaign categories, maybe send
-#        those as a parameter in render_template('base.html') so I can have a dropdown
-#        'categories' field.
+#        It will be very simple, with two buttons that take the user to 'predict'
+#        or 'query' forms. No need to send any parameters.
 @app.route('/')
 def root():
     all = Record.query.count()
@@ -30,14 +29,26 @@ def root():
                            notdone=not_done)
 
 
+# FORM PAGES
+# TODO - We'll probably need some parameters sent to the templates on these pages,
+#        such as all the unique campaign categories (so I can make a dropdown).
+@app.route('/predict')
+def predict():
+    return render_template('predict.html', title='Predict')
+
+@app.route('/query')
+def query():
+    return render_template('query.html', title='Query')
+
+
 # PREDICT
 # TODO - The predict form will have a bunch of fields which will depend on Daven's and
 #        Trevor's model. This route should take those inputs, make the prediction, and
-#        render the result in 'predict.html'.
-@app.route('/predict', methods=['POST'])
-def predict():
+#        render the result in 'predictr.html'.
+@app.route('/predictr', methods=['POST'])
+def predictr():
     result = None
-    return render_template('predict.html', title='Prediction',
+    return render_template('predictr.html', title='Prediction',
                            result=result)
 
 
@@ -45,12 +56,12 @@ def predict():
 # TODO - The query form will have the 'categories' dropdown mentioned above, and a few
 #        other fields so users can search the database for campaigns similar to theirs
 #        and see if the results succeeded or failed. This route should make a query
-#        from those inputs, and send back the results as parameters to 'query.html',
+#        from those inputs, and send back the results as parameters to 'queryr.html',
 #        where I'll print them nicely.
-@app.route('/query', methods=['POST'])
-def query():
+@app.route('/queryr', methods=['POST'])
+def queryr():
     result = None
-    return render_template('query.html', title='Query',
+    return render_template('queryr.html', title='Query Result',
                            result=result)
 
 

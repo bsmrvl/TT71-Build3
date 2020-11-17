@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 
-<h2>Result</h2>
-<h3>{{ result }}</h3>
+{% block content %}
+    <form action="/query", method="post">
+        <input name="query_test" type="text", placeholder="Query Form Test">
+        <button>Submit</button>
+    </form>
+{% endblock %}
