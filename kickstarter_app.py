@@ -95,7 +95,7 @@ def queryr():
         else:
             query_results = 'Please provide only one input'
 
-    if goal != '':
+    elif goal != '':
         if category == '' and location == '' and blurbphrase == '':
             query_results = Record.query.filter(
                 Record.goal >= int(int(goal)*0.9),
@@ -104,7 +104,7 @@ def queryr():
         else:
             query_results = 'Please provide only one input'
     
-    if location != '':
+    elif location != '':
         if category == '' and goal == '' and blurbphrase == '':
             query_results = Record.query.filter(
                 Record.location == location
@@ -112,7 +112,7 @@ def queryr():
         else:
             query_results = 'Please provide only one input'
     
-    if blurbphrase != '':
+    elif blurbphrase != '':
         if category == '' and goal == '' and location == '':
             query_results = Record.query.filter(
                 Record.blurb == blurbphrase
