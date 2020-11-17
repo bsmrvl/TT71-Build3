@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from time import time
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 # Configurations
@@ -93,6 +94,11 @@ def queryr():
 
     return render_template('queryr.html', title='Query Result',
                            result=query_results)
+
+
+@app.template_filter('from_timestamp')
+def from_timestamp(timestamp):
+    return datetime.fromtimestamp(timestamp).strftime("%b %d, %Y")
 
 
 
