@@ -44,7 +44,21 @@ def predict():
 
 @app.route('/query')
 def query():
-    return render_template('query.html', title='Query')
+    cat_names = []
+    locs = []
+    for cat in Record.query.distinct(Record.category_name):
+        if cat.category_name not in cat_names:
+            cat_names.append(cat.category_name)  
+        else: 
+            continue
+
+    for loc in Record.query.distinct(Record.location):
+        if loc.location not in locs:
+            locs.append(loc.location)  
+        else: 
+            continue
+    return render_template('query.html', title='Query', categories=sorted(cat_names), 
+                            locations=sorted(locs))
 
 
 # PREDICT
