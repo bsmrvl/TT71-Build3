@@ -108,8 +108,8 @@ class Record(DB.Model):
                         "blurb": self.blurb,
                         "link": self.link,
                         "category_name": self.category_name,
-                        "launch_date": self.launch_date,
-                        "deadline_date": self.deadline_date,
+                        "launch_timestamp": self.launch_timestamp,
+                        "deadline_timestamp": self.deadline_timestamp,
                         "pledged": self.pledged,
                         "goal": self.goal,
                         "location": self.location
