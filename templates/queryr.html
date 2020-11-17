@@ -3,6 +3,6 @@
 {% block content %}
     <h2>Result</h2>
     {% for line in result %}
-        {{ line.launch_timestamp|from_timestamp }}<br>
+        {{ line }}<br>
     {% endfor %}
 {% endblock %}

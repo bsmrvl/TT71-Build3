@@ -87,44 +87,63 @@ def queryr():
     location = request.form.get('location')
     blurbphrase = request.form.get('blurbphrase')
 
-    if category != '':
-        if goal == '' and location == '' and blurbphrase == '':
-            query_results = Record.query.filter(
-                Record.category_name == category
-            )
-        else:
-            query_results = 'Please provide only one input'
+    query = DB.session.query(Record)
+    if category:
+        query = query.filter(
+            Record.category_name == category
+        )
+    if goal:
+        query = query.filter(
+            Record.goal >= int(int(goal)*0.9),
+            Record.goal <= int(int(goal)*1.1)
+        )
+    if location:
+        query = query.filter(
+            Record.location == location
+        )
+    if blurbphrase:
+        query = query.filter(
+            Record.blurb == blurbphrase
+        )
 
-    elif goal != '':
-        if category == '' and location == '' and blurbphrase == '':
-            query_results = Record.query.filter(
-                Record.goal >= int(int(goal)*0.9),
-                Record.goal <= int(int(goal)*1.1)
-            )
-        else:
-            query_results = 'Please provide only one input'
+    # if category != '':
+    #     if goal == '' and location == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.category_name == category
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+
+    # elif goal != '':
+    #     if category == '' and location == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.goal >= int(int(goal)*0.9),
+    #             Record.goal <= int(int(goal)*1.1)
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
     
-    elif location != '':
-        if category == '' and goal == '' and blurbphrase == '':
-            query_results = Record.query.filter(
-                Record.location == location
-            )
-        else:
-            query_results = 'Please provide only one input'
+    # elif location != '':
+    #     if category == '' and goal == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.location == location
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
     
-    elif blurbphrase != '':
-        if category == '' and goal == '' and location == '':
-            query_results = Record.query.filter(
-                Record.blurb == blurbphrase
-            )
-        else:
-            query_results = 'Please provide only one input'
-    else:
-        query_results = 'You must provide one input'
+    # elif blurbphrase != '':
+    #     if category == '' and goal == '' and location == '':
+    #         query_results = Record.query.filter(
+    #             Record.blurb == blurbphrase
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+    # else:
+    #     query_results = 'You must provide one input'
 
 
     return render_template('queryr.html', title='Query Result',
-                           result=query_results)
+                           result=query[:100])
 
 
 @app.template_filter('from_timestamp')
