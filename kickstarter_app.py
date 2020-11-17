@@ -34,7 +34,13 @@ def root():
 #        such as all the unique campaign categories (so I can make a dropdown).
 @app.route('/predict')
 def predict():
-    return render_template('predict.html', title='Predict')
+    cat_names = []
+    for cat in Record.query.distinct(Record.category_name):
+        if cat.category_name not in cat_names:
+            cat_names.append(cat.category_name)  
+        else: 
+            continue
+    return render_template('predict.html', title='Predict', categories=cat_names)
 
 @app.route('/query')
 def query():
