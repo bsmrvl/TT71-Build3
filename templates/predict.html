@@ -2,6 +2,7 @@
 
 {% block content %}
     <h2>Predict Success</h2>
+    <p>Our model can predict campaign success with 94% accuracy, using only Category and Description as inputs. Enter yours below to see your chances!</p>
     <form action="/predict" method="post" id='predform'>
         <div><label for="category">Category</label>
         <select name="category" class='input'>
@@ -11,8 +12,6 @@
         </select></div>
         <div><label for="blurb">Description</label>
         <textarea name="blurb" class='input'></textarea></div>
-        
-        <button class='button'>Predict!</button>
+        <button class='input button'>Predict!</button>
     </form>
-    <div style='visibility: hidden;'>f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f f </div>
 {% endblock %},

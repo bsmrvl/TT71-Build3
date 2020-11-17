@@ -1,8 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <form action="/query", method="post">
-        <input name="query_test" type="text", placeholder="Query Form Test">
-        <button>Submit</button>
+    <h2>Search Similar Campaigns</h2>
+    <p>Another way to help you tweak your campaign is to look up similar campaigns, and investigate the differences between those that succeeded and those that failed. Enter details below to search our database of the most recent 10,000 campaigns in the US.</p>
+    <form action="/query" method="post" id='queryform'>
+        <div><label for="category">Category</label>
+        <select name="category" class='input'>
+            {% for cat in categories %}
+                <option value="{{ cat }}">{{ cat }}</option>
+            {% endfor %}
+        </select></div>
+        <div><label for="goal">Goal ($)</label>
+        <input name="goal" type="number" class="input"></div>
+        <div><label for="location">City</label>
+        <input name="location" type="text" class='input'></div>
+        <div><label for="blurbphrase">Search Phrase</label>
+        <input name="blurbphrase" type="text" class='input'></div>
+        <button class='button double'>Search</button>
     </form>
 {% endblock %}
