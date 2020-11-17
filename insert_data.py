@@ -6,7 +6,6 @@ if __name__ == '__main__':
     df = pd.read_csv('data/KS_US_latest_10k_finished.csv', dtype=object)
     DB.drop_all()
     DB.create_all()
-    # Get data from Apify, make Record objects with it, and add to db
     for i in range (df.shape[0]):
         record = Record()
         record.id = i
