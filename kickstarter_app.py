@@ -78,14 +78,21 @@ def predictr():
 #        and see if the results succeeded or failed. This route should make a query
 #        from those inputs, and send back the results as parameters to 'queryr.html',
 #        where I'll print them nicely.
-@app.route('/queryr', methods=['POST'])
+@app.route('/queryr', methods=['GET', 'POST'])
 def queryr():
+
     category = request.form.get('category')
     goal = request.form.get('goal')
     location = request.form.get('location')
     blurbphrase = request.form.get('blurbphrase')
+
+    query_results = Record.query.filter(
+        Record.category_name == category,
+        #(goal*0.9)<= Record.goal <= (goal*1.10),
+        Record.location == location)
+
     return render_template('queryr.html', title='Query Result',
-                           result=[category, goal, location, blurbphrase])
+                           result=query_results)
 
 
 
