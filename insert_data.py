@@ -12,7 +12,7 @@ if __name__ == '__main__':
         record.id = i
         record.name = df.iloc[i]['name']
         record.blurb = df.iloc[i]['blurb']
-        record.link = df.iloc[i]['source_url']
+        record.link = json.loads(df.iloc[i]['urls'])['web']['project']
         record.category_name = json.loads(df.iloc[i]['category'])['name']
         record.launch_timestamp = df.iloc[i]['launched_at']
         record.deadline_timestamp = df.iloc[i]['deadline']
