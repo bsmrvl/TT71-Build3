@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from time import time
 from flask_sqlalchemy import SQLAlchemy
 
@@ -66,9 +66,12 @@ def predictr():
 #        where I'll print them nicely.
 @app.route('/queryr', methods=['POST'])
 def queryr():
-    result = None
+    category = request.form.get('category')
+    goal = request.form.get('goal')
+    location = request.form.get('location')
+    blurbphrase = request.form.get('blurbphrase')
     return render_template('queryr.html', title='Query Result',
-                           result=result)
+                           result=[category, goal, location, blurbphrase])
 
 
 
