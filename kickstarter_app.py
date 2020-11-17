@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from time import time
+from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 # Configurations
@@ -86,13 +87,68 @@ def queryr():
     location = request.form.get('location')
     blurbphrase = request.form.get('blurbphrase')
 
-    query_results = Record.query.filter(
-        Record.category_name == category,
-        #(goal*0.9)<= Record.goal <= (goal*1.10),
-        Record.location == location)
+    query = DB.session.query(Record)
+    if category:
+        query = query.filter(
+            Record.category_name == category
+        )
+    if goal:
+        query = query.filter(
+            Record.goal >= int(int(goal)*0.9),
+            Record.goal <= int(int(goal)*1.1)
+        )
+    if location:
+        query = query.filter(
+            Record.location == location
+        )
+    if blurbphrase:
+        query = query.filter(
+            Record.blurb == blurbphrase
+        )
+
+    # if category != '':
+    #     if goal == '' and location == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.category_name == category
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+
+    # elif goal != '':
+    #     if category == '' and location == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.goal >= int(int(goal)*0.9),
+    #             Record.goal <= int(int(goal)*1.1)
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+    
+    # elif location != '':
+    #     if category == '' and goal == '' and blurbphrase == '':
+    #         query_results = Record.query.filter(
+    #             Record.location == location
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+    
+    # elif blurbphrase != '':
+    #     if category == '' and goal == '' and location == '':
+    #         query_results = Record.query.filter(
+    #             Record.blurb == blurbphrase
+    #         )
+    #     else:
+    #         query_results = 'Please provide only one input'
+    # else:
+    #     query_results = 'You must provide one input'
+
 
     return render_template('queryr.html', title='Query Result',
-                           result=query_results)
+                           result=query[:100])
+
+
+@app.template_filter('from_timestamp')
+def from_timestamp(timestamp):
+    return datetime.fromtimestamp(timestamp).strftime("%b %d, %Y")
 
 
 
