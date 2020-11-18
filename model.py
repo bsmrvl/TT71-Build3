@@ -1,7 +1,6 @@
 import pandas as pd
 import numpy as np
 import pickle
-from sklearn.neighbors import NearestNeighbors
 
 def load_final_model():
     mod = None
