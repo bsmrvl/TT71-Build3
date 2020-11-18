@@ -10,6 +10,9 @@ flask = "*"
 flask-sqlalchemy = "*"
 pandas = "*"
 python-dotenv = "*"
+scikit-learn = "*"
+category-encoders = "*"
+numpy = "*"
 
 [requires]
 python_version = "3.8"
