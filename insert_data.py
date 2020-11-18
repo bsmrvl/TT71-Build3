@@ -15,8 +15,8 @@ def go():
         record.category_name = json.loads(df.iloc[i]['category'])['name']
         record.launch_timestamp = df.iloc[i]['launched_at']
         record.deadline_timestamp = df.iloc[i]['deadline']
-        record.pledged = df.iloc[i]['pledged']
-        record.goal = df.iloc[i]['goal']
+        record.pledged = int(df.iloc[i]['pledged'])
+        record.goal = int(df.iloc[i]['goal'])
         record.location = json.loads(df.iloc[i]['location'])['short_name']
         DB.session.add(record)
         if i%1000 == 0:
