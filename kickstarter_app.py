@@ -6,30 +6,30 @@ from flask_sqlalchemy import SQLAlchemy
 from model import decision_tree_predict, get_nearest_neighbor
 
 # Configurations
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
+APP = Flask(__name__)
+APP.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
+APP.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 # Database instance
-DB = SQLAlchemy(app)
+DB = SQLAlchemy(APP)
 
 
 
 ### REFRESH
-@app.route('/refreshnotforuser')
+@APP.route('/refreshnotforuser')
 def refresh():
     import insert_data
     return insert_data.go()
 
 
 # ROOT
-@app.route('/')
+@APP.route('/')
 def root():
     return render_template('base.html', title='Home')
 
 
 # FORM PAGES
-@app.route('/predict')
+@APP.route('/predict')
 def predict():
     cat_names = []
     for cat in Record.query.distinct(Record.category_name):
@@ -39,7 +39,7 @@ def predict():
             continue
     return render_template('predict.html', title='Predict', categories=sorted(cat_names))
 
-@app.route('/query')
+@APP.route('/query')
 def query():
     cat_names = []
     locs = []
@@ -59,7 +59,7 @@ def query():
 
 
 # PREDICT
-@app.route('/predictr', methods=['POST'])
+@APP.route('/predictr', methods=['POST'])
 def predictr():
     title = request.form.get('title')
     blurb = request.form.get('blurb')
@@ -75,7 +75,7 @@ def predictr():
 
 
 # QUERY
-@app.route('/queryr', methods=['GET', 'POST'])
+@APP.route('/queryr', methods=['GET', 'POST'])
 def queryr():
     category = request.form.get('category')
     goal = request.form.get('goal')
@@ -105,7 +105,7 @@ def queryr():
                            result=query[:100])
 
 
-@app.template_filter('from_timestamp')
+@APP.template_filter('from_timestamp')
 def from_timestamp(timestamp):
     return datetime.fromtimestamp(timestamp).strftime("%b %d, %Y")
 
