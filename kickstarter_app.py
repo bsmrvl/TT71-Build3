@@ -120,8 +120,8 @@ class Record(DB.Model):
     category_name = DB.Column(DB.String, nullable=False)
     launch_timestamp = DB.Column(DB.Integer, nullable=False)
     deadline_timestamp = DB.Column(DB.Integer, nullable=False)
-    pledged = DB.Column(DB.Integer, nullable=False)
-    goal = DB.Column(DB.Integer, nullable=False)
+    pledged = DB.Column(DB.Float, nullable=False)
+    goal = DB.Column(DB.Float, nullable=False)
     location = DB.Column(DB.String, nullable=False)
 
     def __repr__(self):
