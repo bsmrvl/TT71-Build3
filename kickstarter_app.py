@@ -13,19 +13,13 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 DB = SQLAlchemy(app)
 
 
-
 # ROOT
-# TODO - This route will just display the home page, so no need for these queries.
-#        It will be very simple, with two buttons that take the user to 'predict'
-#        or 'query' forms. No need to send any parameters.
 @app.route('/')
 def root():
     return render_template('base.html', title='Home')
 
 
 # FORM PAGES
-# TODO - We'll probably need some parameters sent to the templates on these pages,
-#        such as all the unique campaign categories (so I can make a dropdown).
 @app.route('/predict')
 def predict():
     cat_names = []
@@ -56,9 +50,6 @@ def query():
 
 
 # PREDICT
-# TODO - The predict form will have a bunch of fields which will depend on Daven's and
-#        Trevor's model. This route should take those inputs, make the prediction, and
-#        render the result in 'predictr.html'.
 @app.route('/predictr', methods=['POST'])
 def predictr():
     title = request.form.get('title')
@@ -67,19 +58,14 @@ def predictr():
     goal = request.form.get('goal')
 
     result = decision_tree_predict(blurb, goal, title, category)
-    nn = get_nearest_neighbor(blurb)
-    # nn_objs = Record.query.filter(Record.id == nn[5])
+    nn = [int(n) for n in get_nearest_neighbor(blurb)]
+    n_query = Record.query.filter(Record.id.in_(nn)).all()
     return render_template('predictr.html', title='Prediction',
                            result=result,
-                           nn=nn)
+                           nn=n_query)
 
 
 # QUERY
-# TODO - The query form will have the 'categories' dropdown mentioned above, and a few
-#        other fields so users can search the database for campaigns similar to theirs
-#        and see if the results succeeded or failed. This route should make a query
-#        from those inputs, and send back the results as parameters to 'queryr.html',
-#        where I'll print them nicely.
 @app.route('/queryr', methods=['GET', 'POST'])
 def queryr():
     category = request.form.get('category')
@@ -105,42 +91,6 @@ def queryr():
         query = query.filter(
             Record.blurb == blurbphrase
         )
-
-    # if category != '':
-    #     if goal == '' and location == '' and blurbphrase == '':
-    #         query_results = Record.query.filter(
-    #             Record.category_name == category
-    #         )
-    #     else:
-    #         query_results = 'Please provide only one input'
-
-    # elif goal != '':
-    #     if category == '' and location == '' and blurbphrase == '':
-    #         query_results = Record.query.filter(
-    #             Record.goal >= int(int(goal)*0.9),
-    #             Record.goal <= int(int(goal)*1.1)
-    #         )
-    #     else:
-    #         query_results = 'Please provide only one input'
-    
-    # elif location != '':
-    #     if category == '' and goal == '' and blurbphrase == '':
-    #         query_results = Record.query.filter(
-    #             Record.location == location
-    #         )
-    #     else:
-    #         query_results = 'Please provide only one input'
-    
-    # elif blurbphrase != '':
-    #     if category == '' and goal == '' and location == '':
-    #         query_results = Record.query.filter(
-    #             Record.blurb == blurbphrase
-    #         )
-    #     else:
-    #         query_results = 'Please provide only one input'
-    # else:
-    #     query_results = 'You must provide one input'
-
 
     return render_template('queryr.html', title='Query Result',
                            result=query[:100])
