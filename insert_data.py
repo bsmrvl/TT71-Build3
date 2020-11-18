@@ -2,7 +2,7 @@ import pandas as pd
 import json
 from kickstarter_app import DB, Record
 
-if __name__ == '__main__':
+def go():
     df = pd.read_csv('data/KS_US_latest_10k_finished.csv', dtype=object)
     DB.drop_all()
     DB.create_all()
@@ -23,3 +23,7 @@ if __name__ == '__main__':
             print(f'{i} done...')
     print('all done.')
     DB.session.commit()
+    return('done')
+
+if __name__ == '__main__':
+    go()

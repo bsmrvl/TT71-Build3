@@ -1,3 +1,4 @@
+from os import getenv
 from flask import Flask, render_template, request
 from time import time
 from datetime import datetime
@@ -6,11 +7,19 @@ from model import decision_tree_predict, get_nearest_neighbor
 
 # Configurations
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///db.sqlite3"
+app.config['SQLALCHEMY_DATABASE_URI'] = getenv('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False 
 
 # Database instance
 DB = SQLAlchemy(app)
+
+
+
+### REFRESH
+@app.route('/refreshnotforuser')
+def refresh():
+    import insert_data
+    return insert_data.go()
 
 
 # ROOT
@@ -121,8 +130,8 @@ class Record(DB.Model):
                         "blurb": self.blurb,
                         "link": self.link,
                         "category_name": self.category_name,
-                        "launch_date": self.launch_timestamp,
-                        "deadline_date": self.deadline_timestamp,
+                        "launch_timestamp": self.launch_timestamp,
+                        "deadline_timestamp": self.deadline_timestamp,
                         "pledged": self.pledged,
                         "goal": self.goal,
                         "location": self.location
