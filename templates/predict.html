@@ -3,16 +3,20 @@
 {% block content %}
     <h2>Predict Success</h2>
     <p>Our model can predict campaign success with 94% accuracy, using only Category and Description as inputs. Enter yours below to see your chances!</p>
-    <form action="/predictr" method="post" id='predform' name='predform'>
+    <form action="/predictr" method="post" class='form' name='predform'>
+        <div class='double'><label for="title">Campaign Title</label>
+            <input name="title" type="text" class="input"></div>
+        <div class='double'><label for="blurb">Short Description</label>
+            <textarea name="blurb" class='input'></textarea></div>
         <div><label for="category">Category</label>
-        <select name="category" class='input'>
-            <option value="" disabled selected>Choose</option>
-            {% for cat in categories %}
-                <option value="{{ cat }}">{{ cat }}</option>
-            {% endfor %}
-        </select></div>
-        <div><label for="blurb">Description</label>
-        <textarea name="blurb" class='input'></textarea></div>
-        <button class='input button'>Predict!</button>
+            <select name="category" class='input'>
+                <option value="" disabled selected>Choose</option>
+                {% for cat in categories %}
+                    <option value="{{ cat }}">{{ cat }}</option>
+                {% endfor %}
+            </select></div>
+        <div><label for="goal">Goal Amount</label>
+            <input name="goal" type="number" class="input"></div>
+        <button class='button double'>Predict!</button>
     </form>
 {% endblock %},
