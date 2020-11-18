@@ -31,11 +31,6 @@ def get_nearest_neighbor(blurb):
 decision_tree_model = load_final_model()
 nn = nearest_neighbor_model()
 
-<<<<<<< HEAD
-print(decision_tree_model)
-print(get_nearest_neighbor('some random text'))
-=======
 # print(decision_tree_model)
 #print(get_nearest_neighbor('some random text'))
->>>>>>> cc00ef5ea7f8cc0b04786196d110fe5eadfec9cc
 #print(decision_tree_predict('abc', 10, 'some title', "asdf"))
