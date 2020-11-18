@@ -24,11 +24,11 @@ def load_encoder():
         enc = pickle.load(handle)
     return enc
 
-def load_tokenizer():
-    t = None
-    with open('tokenizer.pickle', 'rb') as handle:
-        t = pickle.load(handle)
-    return t
+# def load_tokenizer():
+#     t = None
+#     with open('tokenizer.pickle', 'rb') as handle:
+#         t = pickle.load(handle)
+#     return t
 
 # def load_model():
 #     new_model = tf.keras.models.load_model('./my_model/')
@@ -60,7 +60,7 @@ def decision_tree_predict(blurb, goal, category):
 #     predictions = combined_model.predict([description_bow_val, variety_val] + [test_embed_val])
 #     return predictions.argmax(axis=-1)[0]
 
-tokenizer = load_tokenizer()
+# tokenizer = load_tokenizer()
 # combined_model = load_model()
 encoder = load_encoder()
 decision_tree_model = load_final_model()
