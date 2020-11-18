@@ -8,7 +8,7 @@ if __name__ == '__main__':
     DB.create_all()
     for i in range (df.shape[0]):
         record = Record()
-        record.id = df.iloc[i]['id']
+        record.id = i
         record.name = df.iloc[i]['name']
         record.blurb = df.iloc[i]['blurb']
         record.link = json.loads(df.iloc[i]['urls'])['web']['project']

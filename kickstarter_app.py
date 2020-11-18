@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from time import time
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
-from model import decision_tree_model, decision_tree_predict
+from model import decision_tree_predict, get_nearest_neighbor
 
 # Configurations
 app = Flask(__name__)
@@ -67,8 +67,11 @@ def predictr():
     goal = request.form.get('goal')
 
     result = decision_tree_predict(blurb, goal, title, category)
+    nn = get_nearest_neighbor(blurb)
+    # nn_objs = Record.query.filter(Record.id == nn[5])
     return render_template('predictr.html', title='Prediction',
-                           result=result)
+                           result=result,
+                           nn=nn)
 
 
 # QUERY
