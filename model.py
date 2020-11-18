@@ -13,8 +13,8 @@ def decision_tree_predict(blurb, goal, title, category):
     temp = pd.DataFrame(columns=['blurb', 'goal', 'name', 'new_cat']).append(values, ignore_index=True)
     return decision_tree_model.predict([temp.iloc[0]])[0]
 
-decision_tree_model = load_final_model()
 
-print(decision_tree_model)
+decision_tree_model = load_final_model()
+# print(decision_tree_model)
 #print(decision_tree_predict('abc', 10, 'some title', "Games"))
 #print(predict("hi", "Technology"))

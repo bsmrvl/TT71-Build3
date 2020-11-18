@@ -1,7 +1,7 @@
 var timer;
 
 function valquery(){
-    var goal = parseFloat(document.getElementById('queryform')['goal'].value);
+    var goal = parseFloat(document.forms['queryform']['goal'].value);
     if(goal < 0 || goal > 10000000){
         flash('Goal must be between $0 and $10,000,000')
         return false;

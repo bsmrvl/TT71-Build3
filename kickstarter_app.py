@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from time import time
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
+from model import decision_tree_model, decision_tree_predict
 
 # Configurations
 app = Flask(__name__)
@@ -12,22 +13,14 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 DB = SQLAlchemy(app)
 
 
+
 # ROOT
 # TODO - This route will just display the home page, so no need for these queries.
 #        It will be very simple, with two buttons that take the user to 'predict'
 #        or 'query' forms. No need to send any parameters.
 @app.route('/')
 def root():
-    all = Record.query.count()
-    succeeded = Record.query.filter(Record.pledged >= Record.goal).count()
-    failed = Record.query.filter(Record.pledged < Record.goal)\
-                         .filter(Record.deadline_timestamp <= time()).count()
-    not_done = Record.query.filter(Record.deadline_timestamp > time()).count()
-    return render_template('base.html', title='Home',
-                           all=all,
-                           succ=succeeded,
-                           fail=failed,
-                           notdone=not_done)
+    return render_template('base.html', title='Home')
 
 
 # FORM PAGES
@@ -68,7 +61,12 @@ def query():
 #        render the result in 'predictr.html'.
 @app.route('/predictr', methods=['POST'])
 def predictr():
-    result = None
+    title = request.form.get('title')
+    blurb = request.form.get('blurb')
+    category = request.form.get('category')
+    goal = request.form.get('goal')
+
+    result = decision_tree_predict(blurb, goal, title, category)
     return render_template('predictr.html', title='Prediction',
                            result=result)
 
@@ -81,7 +79,6 @@ def predictr():
 #        where I'll print them nicely.
 @app.route('/queryr', methods=['GET', 'POST'])
 def queryr():
-
     category = request.form.get('category')
     goal = request.form.get('goal')
     location = request.form.get('location')
