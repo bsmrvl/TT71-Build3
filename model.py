@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.neighbors import NearestNeighbors
 
 def load_final_model():
     mod = None
@@ -31,5 +32,5 @@ decision_tree_model = load_final_model()
 nn = nearest_neighbor_model()
 
 print(decision_tree_model)
-#print(get_nearest_neighbor('some random text'))
+print(get_nearest_neighbor('some random text'))
 #print(decision_tree_predict('abc', 10, 'some title', "asdf"))
