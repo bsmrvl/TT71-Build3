@@ -4,13 +4,13 @@ import pickle
 
 def load_final_model():
     mod = None
-    with open('./tree.pickle', 'rb') as handle:
+    with open('tree.pickle', 'rb') as handle:
         mod = pickle.load(handle)
     return mod
 
 def nearest_neighbor_model():
     nn = None
-    with open('./nn.pickle', 'rb') as handle:
+    with open('nn.pickle', 'rb') as handle:
         nn = pickle.load(handle)
     return nn
 
@@ -21,7 +21,7 @@ def decision_tree_predict(blurb, goal, title, category):
 
 def get_nearest_neighbor(blurb):
     nlp = None
-    with open('./nlp.pickle', 'rb') as handle:
+    with open('nlp.pickle', 'rb') as handle:
         nlp = pickle.load(handle)
     blurb = nlp(blurb).vector
     # Returns an array of ID's of 10 nearest neighbors
