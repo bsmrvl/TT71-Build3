@@ -22,6 +22,8 @@ p {
 }
 .failed {background-color: rgba(240, 128, 128, .3);}
 .succeeded {background-color: rgba(144, 238, 144, .3);}
+.dfailed {background-color: rgba(240, 128, 128, .8);}
+.dsucceeded {background-color: rgba(144, 238, 144, .8);}
 .campaign {
     margin: 12px 0;
     padding: 12px;
@@ -30,8 +32,9 @@ p {
 .ctitle {
     display: block;
     font-size: 1.1em;
+    font-weight: bold;
 }
-.cdate {
+.cdetails {
     color: rgba(0, 0, 0, .7)
 }
 .cmoney {
@@ -122,4 +125,12 @@ label {
     font-weight: bold;
     color: white;
     background-color: rgba(0,0,0,.7);
+}
+
+.bigresult {
+    display: inline-block;
+    padding: 30px 50px;
+    margin-bottom: 50px;
+    font-size: 3em;
+    font-weight: bold;
 }

@@ -1,9 +1,39 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Result</h2>
-    <h3>{{ result }}</h3>
-    {% for neigh in nn %}
-        <p>{{ neigh.name }}</p>
-    {% endfor %}
+    <h2>Your campaign will...</h2>
+    {% if result %}
+        <div class='bigresult dsucceeded'>SUCCEED!</div>
+    {% else %}
+        <div class='bigresult dfailed'>FAIL!</div>
+    {% endif %}
+    <h3>Here are some similar campaigns, based on analysis of your campaign's description.</h3>
+    <div class='twocol'>
+        <div>
+            <h3>Failed</h3>
+            {% for line in nn %}
+                {% if line.pledged < line.goal %}
+                    <div class='campaign failed'>
+                        <a href='{{ line.link }}' class='ctitle cleanlink'>{{ line.name }}</a>
+                        <div class='cdetails'>{{ line.location }} &ndash; {{ line.launch_timestamp|from_timestamp }}</div>
+                        <div class='cdesc'><i>{{ line.blurb }}</i></div>
+                        <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div>
+            <h3>Succeeded</h3>
+            {% for line in nn %}
+                {% if line.pledged >= line.goal %}
+                    <div class='campaign succeeded'>
+                        <a href='{{ line.link }}' class='ctitle cleanlink'>{{ line.name }}</a>
+                        <div class='cdetails'>{{ line.location }} &ndash; {{ line.launch_timestamp|from_timestamp }}</div>
+                        <div class='cdesc'><i>{{ line.blurb }}</i></div>
+                        <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}

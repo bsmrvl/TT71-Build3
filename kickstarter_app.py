@@ -110,12 +110,15 @@ def queryr():
 
     return render_template('queryr.html', title='Query Result',
                            header=header,
-                           result=query[:100])
+                           result=query[:50])
 
 
 @APP.template_filter('from_timestamp')
 def from_timestamp(timestamp):
-    return datetime.fromtimestamp(timestamp).strftime("%b %d, %Y")
+    date_str = datetime.fromtimestamp(timestamp).strftime("%m/%d/%Y")
+    if date_str[0] == '0':
+        date_str = date_str[1:]
+    return date_str
 
 
 

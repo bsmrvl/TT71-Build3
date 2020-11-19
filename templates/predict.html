@@ -3,7 +3,7 @@
 {% block content %}
     <h2>Predict Success</h2>
     <p>Our model can predict campaign success with 94% accuracy, using only Category and Description as inputs. Enter yours below to see your chances!</p>
-    <form action="/predictr" method="post" class='form' name='predform'>
+    <form action="/predictr" method="post" class='form' name='predform' onsubmit="return valpred()">
         <div class='double'><label for="title">Campaign Title</label>
             <input name="title" type="text" class="input"></div>
         <div class='double'><label for="blurb">Short Description</label>
