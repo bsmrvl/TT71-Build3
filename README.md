@@ -5,7 +5,7 @@ Predicts Kickstarter campaign success using campaign **title**, **description**,
 
 Data includes 10,000 finished campaigns between 1/21/20 and 11/12/20. App also has a query form which allows user to search for campaigns similar to theirs, and compare failures to successes.
 
-To install and run locally, clone the repo, change "env.txt" to ".env". Then:
+To install and run locally, clone the repo and change "env.txt" to ".env". Then:
 
 ```
 pipenv install
