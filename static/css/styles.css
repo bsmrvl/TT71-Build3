@@ -104,15 +104,6 @@ label {
     cursor: pointer;
 }
 
-@media (max-width: 450px) {
-    #queryform {
-        grid-template-columns: repeat(1, 1fr);
-    }
-    .double {
-        grid-column: 1 / 2;
-    }
-}
-
 #alertbox {
     border-radius: 3px;
     position: fixed;
@@ -133,4 +124,13 @@ label {
     margin-bottom: 50px;
     font-size: 3em;
     font-weight: bold;
+}
+
+@media (max-width: 450px) {
+    .form {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .double {
+        grid-column: 1 / 2;
+    }
 }
