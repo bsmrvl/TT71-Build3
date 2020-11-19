@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2>Predict Success</h2>
-    <p>Our model can predict campaign success with 94% accuracy, using only Category and Description as inputs. Enter yours below to see your chances!</p>
+    <p style='text-align: center;'>Enter your campaign info below to see your chances of success!</p>
     <form action="/predictr" method="post" class='form' name='predform' onsubmit="return valpred()">
         <div class='double'><label for="title">Campaign Title</label>
             <input name="title" type="text" class="input"></div>
@@ -19,4 +19,5 @@
             <input name="goal" type="number" class="input"></div>
         <button class='button double'>Predict!</button>
     </form>
+    <div style='visibility: hidden;'>h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h h </div>
 {% endblock %},

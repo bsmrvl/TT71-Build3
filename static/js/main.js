@@ -30,3 +30,23 @@ function flash(message){
         alertbox.style.visibility = 'hidden';
     }, 1500);
 }
+
+function streamtab(stream){
+    if(window.matchMedia("(max-width: 500px)").matches){
+        var ftoggle = document.getElementById('ftoggle');
+        var stoggle = document.getElementById('stoggle');
+        var fstream = document.getElementById('fstream');
+        var sstream = document.getElementById('sstream');
+        if(stream == 0){
+            ftoggle.style.backgroundColor = 'rgba(0,0,0, .07)';
+            stoggle.style.backgroundColor = 'white';
+            fstream.style.display = 'block';
+            sstream.style.display = 'none';
+        } else {
+            stoggle.style.backgroundColor = 'rgba(0,0,0, .07)';
+            ftoggle.style.backgroundColor = 'white';
+            sstream.style.display = 'block';
+            fstream.style.display = 'none';
+        }
+    }
+}
