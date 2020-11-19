@@ -14,12 +14,12 @@
         <div><label for="goal">Goal ($)</label>
         <input name="goal" type="number" class="input"></div>
         <div><label for="location">Location</label>
-        <select name="location" class='input'>
-            <option value="" selected>Choose</option>
+        <input name="location" type="text" class='input' list='llist'>
+        <datalist id="llist">
             {% for loc in locations %}
-                <option value="{{ loc }}">{{ loc }}</option>
+                <option value="{{ loc }}">
             {% endfor %}
-        </select></div>
+        </datalist></div>
         <div><label for="blurbphrase">Search Phrase</label>
         <input name="blurbphrase" type="text" class='input'></div>
         <button class='button double'>Search</button>
