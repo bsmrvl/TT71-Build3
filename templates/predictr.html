@@ -9,8 +9,11 @@
     {% endif %}
     <h3>Here are some similar campaigns, based on analysis of your campaign's description.</h3>
     <div class='twocol'>
-        <div>
-            <h3>Failed</h3>
+        <h3 class='toggle' id='ftoggle' onclick='streamtab(0)'>Failed</h3>
+        <h3 class='toggle' id='stoggle' onclick='streamtab(1)'>Succeeded</h3>
+    </div>
+    <div class='twocol'>
+        <div class='cstream' id='fstream'>
             {% for line in nn %}
                 {% if line.pledged < line.goal %}
                     <div class='campaign failed'>
@@ -22,8 +25,7 @@
                 {% endif %}
             {% endfor %}
         </div>
-        <div>
-            <h3>Succeeded</h3>
+        <div class='cstream', id='sstream'>
             {% for line in nn %}
                 {% if line.pledged >= line.goal %}
                     <div class='campaign succeeded'>
