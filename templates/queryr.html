@@ -1,8 +1,38 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Result</h2>
-    {% for line in result %}
-        {{ line }}<br>
-    {% endfor %}
+    <h2>{{ header }}</h2>
+    {% if result %}
+        <div class='twocol'>
+            <div>
+                <h3>Failed</h3>
+                {% for line in result %}
+                    {% if line.pledged < line.goal %}
+                        <div class='campaign failed'>
+                            <a href='{{ line.link }}' class='ctitle cleanlink'><b>{{ line.name }}</b> - {{ line.location }}</a>
+                            <div class='cdate'>{{ line.launch_timestamp|from_timestamp }}</div>
+                            <div class='cdesc'><i>{{ line.blurb }}</i></div>
+                            <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <div>
+                <h3>Succeeded</h3>
+                {% for line in result %}
+                    {% if line.pledged >= line.goal %}
+                        <div class='campaign succeeded'>
+                            <a href='{{ line.link }}' class='ctitle cleanlink'><b>{{ line.name }}</b> - {{ line.location }}</a>
+                            <div class='cdate'>{{ line.launch_timestamp|from_timestamp }}</div>
+                            <div class='cdesc'><i>{{ line.blurb }}</i></div>
+                            <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <h4>No results! Try making your search less specific.</h4>
+    {% endif %}
+    <div style='visibility: hidden;'>h h h hh h h h h h h h h h h h h h h h h h h h h h hh h h h h h h h h h h h h h h h h h h h h h hh h h h h h h h h h h h h h h h h h h h h h hh h h h h h h h h h h h h h h h h h h </div>
 {% endblock %}

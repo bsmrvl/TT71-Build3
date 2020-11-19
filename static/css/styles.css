@@ -13,6 +13,34 @@ p {
     text-align: left;
 }
 
+.twocol {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 30px;
+    max-width: 900px;
+    margin: auto;
+}
+.failed {background-color: rgba(240, 128, 128, .3);}
+.succeeded {background-color: rgba(144, 238, 144, .3);}
+.campaign {
+    margin: 12px 0;
+    padding: 12px;
+    text-align: left;
+}
+.ctitle {
+    display: block;
+    font-size: 1.1em;
+}
+.cdate {
+    color: rgba(0, 0, 0, .7)
+}
+.cmoney {
+    font-weight: bold;
+}
+.campaign div {
+    margin-top: 4px;
+}
+
 #options {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -47,6 +75,13 @@ label {
 }
 .double {
     grid-column: 1 / 3;
+}
+
+.cleanlink {
+    color: inherit;
+    text-decoration: none;
+} .cleanlink:hover {
+    text-decoration: underline;
 }
 
 .button {

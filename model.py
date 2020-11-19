@@ -22,8 +22,6 @@ def decision_tree_predict(blurb, goal, title, category):
 
 def get_nearest_neighbor(blurb):
     nlp = spacy.load('nlp')
-    # with open('nlp.pickle', 'rb') as handle:
-    #     nlp = pickle.load(handle)
     blurb = nlp(blurb).vector
     # Returns an array of ID's of 10 nearest neighbors
     return nn.kneighbors([blurb])[1][0]

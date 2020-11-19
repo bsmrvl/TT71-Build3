@@ -82,26 +82,34 @@ def queryr():
     location = request.form.get('location')
     blurbphrase = request.form.get('blurbphrase')
 
+    header = 'Campaigns'
     query = DB.session.query(Record)
     if category:
+        header = '"' + category + '" campaigns'
         query = query.filter(
             Record.category_name == category
         )
     if goal:
+        header = header + ' with goal around $' + goal + ','
         query = query.filter(
             Record.goal >= int(int(goal)*0.9),
             Record.goal <= int(int(goal)*1.1)
         )
     if location:
+        header = header + ' in ' + location + ','
         query = query.filter(
             Record.location == location
         )
     if blurbphrase:
+        header = header + ' containing "' + blurbphrase + '",'
         query = query.filter(
             Record.blurb == blurbphrase
         )
+    if header[-1] == ',':
+        header = header[:-1]
 
     return render_template('queryr.html', title='Query Result',
+                           header=header,
                            result=query[:100])
 
 
