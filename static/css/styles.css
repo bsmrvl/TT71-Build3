@@ -5,7 +5,7 @@ body {
 
 section {
     display: inline-block;
-    max-width: 700px;
+    max-width: 800px;
     padding: 8px;
 }
 
@@ -17,7 +17,7 @@ p {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 30px;
-    max-width: 900px;
+    max-width: 800px;
     margin: auto;
 }
 .failed {background-color: rgba(240, 128, 128, .3);}
@@ -26,7 +26,7 @@ p {
 .dsucceeded {background-color: rgba(144, 238, 144, .8);}
 .campaign {
     margin: 12px 0;
-    padding: 12px;
+    padding: 15px;
     text-align: left;
 }
 .ctitle {
@@ -41,7 +41,7 @@ p {
     font-weight: bold;
 }
 .campaign div {
-    margin-top: 4px;
+    margin-top: 7px;
 }
 
 #options {

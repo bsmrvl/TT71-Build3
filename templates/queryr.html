@@ -10,6 +10,7 @@
                     {% if line.pledged < line.goal %}
                         <div class='campaign failed'>
                             <a href='{{ line.link }}' class='ctitle cleanlink'>{{ line.name }}</a>
+                            <div class='cdetails'>{{ line.category_name }}</div>
                             <div class='cdetails'>{{ line.location }} &ndash; {{ line.launch_timestamp|from_timestamp }}</div>
                             <div class='cdesc'><i>{{ line.blurb }}</i></div>
                             <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>
@@ -23,6 +24,7 @@
                     {% if line.pledged >= line.goal %}
                         <div class='campaign succeeded'>
                             <a href='{{ line.link }}' class='ctitle cleanlink'>{{ line.name }}</a>
+                            <div class='cdetails'>{{ line.category_name }}</div>
                             <div class='cdetails'>{{ line.location }} &ndash; {{ line.launch_timestamp|from_timestamp }}</div>
                             <div class='cdesc'><i>{{ line.blurb }}</i></div>
                             <div class='cmoney'>Goal: ${{ line.goal }} | Met: ${{ line.pledged }}</div>

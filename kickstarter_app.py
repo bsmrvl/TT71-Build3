@@ -92,8 +92,8 @@ def queryr():
     if goal:
         header = header + ' with goal around $' + goal + ','
         query = query.filter(
-            Record.goal >= int(int(goal)*0.9),
-            Record.goal <= int(int(goal)*1.1)
+            Record.goal >= int(int(goal)*0.8),
+            Record.goal <= int(int(goal)*1.2)
         )
     if location:
         header = header + ' in ' + location + ','
