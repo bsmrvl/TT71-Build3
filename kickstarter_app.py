@@ -84,6 +84,7 @@ def queryr():
     blurbphrase = request.form.get('blurbphrase')
 
     header = 'Campaigns'
+    message = None
     query = DB.session.query(Record)
     if category:
         header = '"' + category + '" campaigns'
@@ -102,17 +103,21 @@ def queryr():
             Record.location == location
         )
     if blurbphrase:
-        header = header + ' containing "' + blurbphrase + '",'
         txt = blurbphrase
-        filtered_keywords = filter(lambda w: not w in stop_words,txt.lower().split())
+        filtered_keywords = list(filter(lambda w: not w in stop_words, txt.lower().split()))
         for word in filtered_keywords:
             query = query.filter(Record.blurb.contains(word)
-            )
+        )
+        if len(filtered_keywords) > 0:
+            header = header + ' containing ' + str(filtered_keywords)[1:-1] + ','
+        else:
+            message = 'Ignoring useless search terms'
     if header[-1] == ',':
         header = header[:-1]
 
     return render_template('queryr.html', title='Query Result',
                            header=header,
+                           message=message,
                            result=query[:50])
 
 

@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 
 {% block content %}
+    {% if message %}
+        <script>flash('{{ message }}');</script>
+    {% endif %}
     <h2>{{ header }}</h2>
     {% if result %}
         <div class='twocol'>
