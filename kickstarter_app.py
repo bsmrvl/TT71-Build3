@@ -4,6 +4,7 @@ from time import time
 from datetime import datetime
 from flask_sqlalchemy import SQLAlchemy
 from model import decision_tree_predict, get_nearest_neighbor
+from stopwords import stop_words
 
 # Configurations
 APP = Flask(__name__)
@@ -102,9 +103,11 @@ def queryr():
         )
     if blurbphrase:
         header = header + ' containing "' + blurbphrase + '",'
-        query = query.filter(
-            Record.blurb == blurbphrase
-        )
+        txt = blurbphrase
+        filtered_keywords = filter(lambda w: not w in stop_words,txt.lower().split())
+        for word in filtered_keywords:
+            query = query.filter(Record.blurb.contains(word)
+            )
     if header[-1] == ',':
         header = header[:-1]
 
